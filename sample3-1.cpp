@@ -14,7 +14,7 @@ static _iterator const * const it_array_end = it_array + sizeof(it_array) / size
 #define _L !is_err && (((++pit, true) && it_array_end > pit && (*pit = it, true) || !(is_err = true)) && (true
 #define _C !is_err || !is_err && (it = *pit, true)
 #define _R !is_err) && (--pit, true) || (--pit, false))
-#define PEG(tiny_peg_expression) _iterator const it_old = it; do{ bool result = _L && tiny_peg_expression && _R; if(is_err){ return false; } if(!result){ it = it_old; return false; } break; }while(true)
+#define PEG(tiny_peg_expression) _iterator const it_old = it; do{ bool result = _L && tiny_peg_expression && _R; if(is_err){ return false; } if(!result){ it = it_old; return false; } }while(false)
 #define LOOP(n)  _L && [&]()->bool{ _iterator const it_old = it; for(int ______cnt = 0, ______n = n;                    ; ++______cnt){ if(______n < ______cnt){ ______cnt = ______n; } *pit = it; bool result = true
 #define TIMES(n) _L && [&]()->bool{ _iterator const it_old = it; for(int ______cnt = 0, ______n = n; ______cnt < ______n; ++______cnt){                                                 *pit = it; bool result = true
 #define END_LOOP  true; if(is_err){ return false; } if(!result){ if(______n > ______cnt){ it = it_old; return false; } it = *pit; return true; } if(it == *pit){ return true; } } return true; }() && _R
